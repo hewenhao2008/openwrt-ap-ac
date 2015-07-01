@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS %s
+(
+	apmac varchar(20),
+	mem_total int unsigned,
+	mem_free int unsigned,
+	cpu_idle_rate int unsigned,
+	run_time int unsigned,
+	primary key(apmac)
+);

@@ -1,0 +1,24 @@
+enum ac_servic_mode
+{
+	AC_ADMIN_DB_MODE,
+	AC_ADMIN_MEM_MODE,
+	AC_OPEN_MEM_MODE,
+};
+
+
+AC_ADMIN_DB_MODE, AC服务程序以数据库为主，外加web用户权限管理，
+
+AC_ADMIN_MEM_MODE, AC服务程序以内存为主，外加web用户权限管理，
+
+AC_OPEN_MEM_MODE, AC服务程序以内存为主，无web用户权限管理。
+
+
+
+
+内存数据模式主要接口函数文件
+cloud_wlan_ap_info_list.c 
+
+
+数据库模式主要接口函数文件
+cloud_wlan_ap_info_list_db.c 
+cloud_wlan_db_cmd_parser.c

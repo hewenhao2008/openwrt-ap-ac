@@ -1,0 +1,28 @@
+CREATE TABLE com_cfg(
+ac_com_addr text  NOT NULL,
+ac_com_port integer  NOT NULL,
+ap_com_eth text NOT NULL,
+over_time integer  NOT NULL,
+interval_timer integer NOT NULL,
+del_time integer  NOT NULL,
+ap_cwlan_sw int NOT NULL,
+ap_klog_sw int NOT NULL,
+ap_klog_mode int NOT NULL
+);
+
+INSERT INTO com_cfg (ac_com_addr, ac_com_port, ap_com_eth, over_time, interval_timer, del_time, ap_cwlan_sw, ap_klog_sw, ap_klog_mode) VALUES( '10.9.100.66' , 22222, 'eth0.2', 300, 3, 3000, 1, 0, 0);
+
+
+CREATE TABLE portal_list(
+id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 1,
+type test,
+url text
+);
+insert into portal_list (type, url)values('', '');
+
+CREATE TABLE white_list(
+id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 1,
+url text
+);
+
+insert into white_list ( url)values(  'www.baidu.com');

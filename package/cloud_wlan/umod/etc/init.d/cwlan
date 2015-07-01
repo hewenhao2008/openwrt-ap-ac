@@ -1,0 +1,66 @@
+#!/bin/sh /etc/rc.common 
+# Copyright (C) 2006 OpenWrt.org 
+
+START=99
+STOP=90
+
+ap_db_init() {
+	cfgdir="/usr/cloud_wlan/cfg"
+	dbdir="/etc/config"
+		 
+	if [ ! -d $cfgdir ]; then 
+		echo "cloud wlan config file is not!"
+		exit
+	fi
+
+
+	for sqlname in `ls $cfgdir`
+	do
+		name=${sqlname%.txt}
+		dbname="${name#create_}.db"
+		if [ ! -e "$dbdir/$dbname" ]; then
+			echo "## sqlite $dbname"
+			sqlite3 $dbdir/$dbname  <<EOF
+		
+begin;
+.read $cfgdir/$sqlname
+commit;
+.q
+EOF
+
+			/usr/cloud_wlan/bin/cloud_wlan_debug des def
+		fi
+	done
+
+
+}
+
+ap_sqlite_check() {
+	if [ ! -e "/usr/bin/sqlite3" ]; then
+		echo "sqlite3 cmd is unsupported program!"
+		exit
+	fi
+	if [ ! -e "/usr/lib/libsqlite3.so.0" ]; then
+		echo "libsqlite3.so.0 is unsupported program!"
+		exit
+	fi
+}
+
+start() {
+	ap_db_init
+	ap_sqlite_check
+	/usr/cloud_wlan/bin/cloud_wlan_ap_com &
+} 
+
+stop() {
+	pid=`pgrep cloud_wlan_ap_com`
+	if [ ! -z "$pid" ]; then
+		kill $pid
+	fi
+	/usr/cloud_wlan/bin/cloud_wlan_debug switch off
+}
+restart() {
+	stop
+	start
+}
+

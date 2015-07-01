@@ -1,0 +1,10 @@
+mysql_db_service = 10.9.100.66
+user_name = root
+password = 
+mysql_db = cwlan
+server_port = 22222
+cw_table_dir = ./tables_cfg
+cw_online_table_name = t_online
+cw_user_table_name = t_user
+cw_cmd_table_name = t_cmd
+ac_service_mode = 0 #0:default db admin mode ; 1:mem admin mode ; 2:mem open mode

@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS %s
+(
+	usermac varchar(20),
+	apmac varchar(20),
+	userip varchar(20),
+	status int unsigned,
+	time int unsigned,
+
+	primary key(usermac)
+);

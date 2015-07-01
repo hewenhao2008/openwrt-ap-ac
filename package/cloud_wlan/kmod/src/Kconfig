@@ -1,0 +1,8 @@
+config zt_wlan
+	bool "cloud wlan support"
+	tristate cloud wlan support”
+	default n
+	help
+		This is a cloud wlan mode, for debugging kernel model.
+		If unsure, say N.
+
